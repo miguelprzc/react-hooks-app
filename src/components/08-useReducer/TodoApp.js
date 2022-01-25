@@ -20,8 +20,21 @@ export const TodoApp = () => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
   
-  
-  console.table(description);
+  const handleDelete = (todoId) => {
+    const action = {
+      type: 'delete',
+      payload: todoId
+    }
+
+    dispatch(action);
+  }
+
+  const handleToggle = (todoId) => {
+    dispatch({
+      type: 'toggle',
+      payload: todoId
+    });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,9 +75,15 @@ export const TodoApp = () => {
                   key={todo.id}
                   className='list-group-item'
                 >
-                  <p className='text-center'>{i + 1}. {todo.desc}</p>
+                  <p 
+                    className={`${todo.done && 'complete'}`}
+                    onClick={() => handleToggle(todo.id)}
+                  >
+                    {i + 1}. {todo.desc}
+                  </p>
                   <button
                     className='btn btn-danger'
+                    onClick={() => handleDelete(todo.id)}
                   >
                     Delete
                   </button>
@@ -76,7 +95,7 @@ export const TodoApp = () => {
         </div>
 
         <div className='col-5'>
-          <h4>Add ToDO</h4>
+          <h4>Add ToDo</h4>
           <hr/>
 
           <form onSubmit={handleSubmit}>
