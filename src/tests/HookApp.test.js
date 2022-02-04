@@ -1,3 +1,4 @@
+import { shallow } from "enzyme";
 import { HookApp } from "../HookApp";
 
 describe('Tests on <HookApp />', () => {
@@ -5,5 +6,4 @@ describe('Tests on <HookApp />', () => {
     const wrapper = shallow(<HookApp />);
     expect(wrapper).toMatchSnapshot();
   });
-  ;
 });
