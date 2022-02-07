@@ -54,7 +54,4 @@ describe('Test in useCounter', () => {
     const {counter} = result.current;
     expect(counter).toBe(10);
   });
-  
-  
-
 });
