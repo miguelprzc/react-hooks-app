@@ -25,7 +25,14 @@ export const useFetch = (url) => {
             data: data,
           });
         } 
-      });
+      })
+      .catch(() => {
+        setState({
+          data: null,
+          loading: false,
+          error: "Couldn't retrieve data"
+        })
+      })
   }, [url])
 
   return state;
